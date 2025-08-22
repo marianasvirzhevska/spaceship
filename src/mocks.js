@@ -76,7 +76,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Науковець',
                 icon: 'pi-cloud',
                 color: '#00d3f3',
-                actionValue: 'dialog',
+                actionValue: 'oxigen',
                 description: 'Купіть новий балон з повітрям. Замініть балон на кораблі і введіть на планшеті код підтвердження.',
             },
             {
@@ -85,7 +85,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Інженер',
                 icon: 'pi-cog',
                 color: '#e17100',
-                actionValue: 'dialog',
+                actionValue: 'battery',
                 description: 'Купіть нову батарею. Замініть батарею на кораблі і введіть на планшеті код підтвердження.',
             },
             {
@@ -94,7 +94,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Навігатор',
                 icon: 'pi-map-marker',
                 color: '#00d492',
-                actionValue: 'dialog',
+                actionValue: 'navigation',
                 description: 'Налаштуйте систему навігації на кораблі і введіть на планшеті код підтвердження.',
             },
             {
@@ -103,7 +103,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Командир',
                 icon: 'pi-phone',
                 color: '#7c86ff',
-                actionValue: 'dialog',
+                actionValue: 'connection',
                 description: 'Налаштуйте антени та радіозвʼязок на кораблі і введіть на планшеті код підтвердження.',
             },
         ]
@@ -141,7 +141,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Інженер',
                 icon: 'pi-cog',
                 color: '#e17100',
-                actionValue: 'dialog',
+                actionValue: 'battery',
                 description: 'Потрібно купити спеціальні деталі (листки А4 - 2шт 2купони за шт, якісь інструменти - 1-2шт - 3 купони за шт) та відремонтувати станцію',
             },
             {
@@ -150,7 +150,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Науковець',
                 icon: 'pi-cloud',
                 color: '#00d3f3',
-                actionValue: 'dialog',
+                actionValue: 'oxigen',
                 description: 'Потрібно купити герметичну стрічку для ремонту. Після цього поміняти балон з киснем.',
             },
             {
@@ -159,7 +159,7 @@ export const mockTasksDescription = [
                 type: 'Виконує Навігатор',
                 icon: 'pi-map-marker',
                 color: '#00d492',
-                actionValue: 'dialog',
+                actionValue: 'navigation',
                 description: 'Потрібно купити нову лампочку і перевірити систему навігації.',
             },
             {
@@ -168,12 +168,14 @@ export const mockTasksDescription = [
                 type: 'Виконує Командир',
                 icon: 'pi-phone',
                 color: '#7c86ff',
+                actionValue: 'connection',
                 description: 'Потрібно купити і встановити нову антену. Відзвітувати перед генералом.',
             },
         ]
     },
     { id: 6,
         name: 'Місія 3: Дослідити Планету Х: Знайти карту памʼяті і розшифрувати.',
+        description: 'Схоже ви знайшли дані таємних дослідженя інопланетян. Її можна розшифрувати тільки з найпотужнішого компʼютера. Повертайтесь на головну станцію',
     },
     { id: 7,
         name: 'SOS: Врятувати незнайомого землянина',
@@ -201,3 +203,13 @@ export const mockTasksDescription = [
         ]
     },
 ];
+
+export const USER_CODES = {
+    scientist: '1133',
+    engineer: '5588',
+    navigator: '9911',
+    comandor: '7700',
+    minister: '1304'
+};
+
+export const CELEBRATION_EVENT_NAME = 'celebrationEvent';

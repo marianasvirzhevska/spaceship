@@ -6,10 +6,10 @@ import {
     ResetDialog,
     OxigenDialog,
     BatteryDialog,
-    MessageDialog,
     AllertDialog,
     HelpDialog,
     NavigationDialog,
+    FinalQuestDialog,
 } from './Dialogs';
 
 export function Navigation() {
@@ -17,7 +17,7 @@ export function Navigation() {
     const [showResetDialog, setShowResetDialog] = useState(false);
     const [showOxigenDialog, setShowOxigenDialog] = useState(false);
     const [showBatteryDialog, setShowBatteryDialog] = useState(false);
-    const [showMessageDialog, setShowMessageDialog] = useState(false);
+    const [showFinalDialog, setShowFinalDialog] = useState(false);
     const [showAirAllert, setShowAirAllert] = useState(false);
     const [showNeedHelpDialog, setShowHelpDialog] = useState(false);
     const [showNavDialog, setShowNavDialog] = useState(false);
@@ -70,13 +70,13 @@ export function Navigation() {
                     command: () => setShowAirAllert(true)
                 },
                 {
-                    label: 'Повідомлення',
-                    command: () => setShowMessageDialog(true)
-                },
-                {
                     label: 'SOS',
                     command: () => setShowHelpDialog(true)
-                }
+                },
+                {
+                    label: 'Фінальний квест',
+                    command: () => setShowFinalDialog(true)
+                },
 
             ]
         }
@@ -88,7 +88,7 @@ export function Navigation() {
             <ResetDialog visible={showResetDialog} handleCloseDialog={() => setShowResetDialog(false)}/>
             <OxigenDialog visible={showOxigenDialog} handleCloseDialog={() => setShowOxigenDialog(false)}/>
             <BatteryDialog visible={showBatteryDialog} handleCloseDialog={() => setShowBatteryDialog(false)}/>
-            <MessageDialog visible={showMessageDialog} handleCloseDialog={() => setShowMessageDialog(false)}/>
+            <FinalQuestDialog visible={showFinalDialog} handleCloseDialog={() => setShowFinalDialog(false)}/>
             <AllertDialog visible={showAirAllert} handleCloseDialog={() => setShowAirAllert(false)}/>
             <HelpDialog visible={showNeedHelpDialog} handleCloseDialog={() => setShowHelpDialog(false)}/>
             <NavigationDialog visible={showNavDialog} handleCloseDialog={() => setShowNavDialog(false)}/>

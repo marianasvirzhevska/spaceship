@@ -11,12 +11,14 @@ import { Tasks } from './components/Tasks';
 import { TaskItem } from './components/TaskItem';
 import { Map } from './components/Map';
 import { Navigation } from './components/Navigation';
+import { Confetti } from './components/confetti';
 
 function App() {
   useLocalStorage('mocks', mockTasks);
   
   return (
     <div className="App">
+        <Confetti />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<Tasks />} />

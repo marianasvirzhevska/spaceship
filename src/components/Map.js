@@ -1,6 +1,7 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { Image } from 'primereact/image';
+import { Button } from 'primereact/button';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import mainMap0 from '../assets/map_0.jpg';
 import mainMap1 from '../assets/map_1.jpg';
@@ -24,15 +25,16 @@ const MapSrcSet = {
 };
 
 export function Map() {
-    const { id } = useParams(); 
-    const mapImgSrc = id ? MapSrcSet[id] : mainMap1;
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     return (
         <div className="task-container">
             <div className="content-wrapper">
                 <div className="card-content">
+                    {id ? <Button label="Назад до завдання" className="button-back" severity="info" onClick={() => navigate(`/tasks/${id}`)}/> : ''}
                     <div className="map-container">
-                        <Image src={mapImgSrc} alt="Карта завдань" width="100%" preview />
+                        <Image src={id ? MapSrcSet[Number(id)] : mainMap0} alt="Карта завдань" width="100%" preview />
                     </div>
                 </div>
             </div>
