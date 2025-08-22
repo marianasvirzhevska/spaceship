@@ -67,6 +67,9 @@ export function TaskItem() {
             case 'connection': {
                 return setShowConnectionDialog(true);
             }
+            default: {
+                return null;
+            }
         }
     }
 
