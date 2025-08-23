@@ -1,12 +1,16 @@
 import useSound from 'use-sound';
 
-import beeper from '../assets/audio/beeper_mergency_call.mp3';
-import celebration from '../assets/audio/female_crowd_celebration.mp3';
+import celebration from '../assets/audio/mixkit-girls-audience-applause-510.wav';
+import alerting from '../assets/audio/mixkit-waiting-ringtone-1354.wav';
+import help from '../assets/audio/mixkit-scanning-sci-fi-alarm-905.wav';
+import airAllert from '../assets/audio/mixkit-street-public-alarm-997.wav';
 
 export const useAudio = (type, volume = 1) => {
     const audioPrisets = {
-        beeper,
         celebration,
+        alerting,
+        help,
+        airAllert,
     }
 
     const [playSound, { stop }] = useSound(audioPrisets[type], { volume })
