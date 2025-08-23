@@ -41,7 +41,7 @@ export const OxigenDialog = ({ visible, handleCloseDialog }) => {
     const [remainingMs, setRemainingMs] = useState(0);
     const [value, setIputValue] = useState('');
     const [error, setError] = useState(false);
-    const [stop, playSound] = useAudio('beeper');
+    const [stop, playSound] = useAudio('alerting');
 
     const previouslyVisibleRef = useRef(false);
     useEffect(() => {
@@ -84,9 +84,11 @@ export const OxigenDialog = ({ visible, handleCloseDialog }) => {
     const isFinished = remainingMs <= 0;
 
     const closeDialog = () => {
+        stop();
         setCooldownEndTimestamp(null);
         setRemainingMs(0);
         setIputValue('');
+        setError(false);
         handleCloseDialog();
     }
 
@@ -155,7 +157,7 @@ export const BatteryDialog = ({ visible, handleCloseDialog }) => {
     const [remainingMs, setRemainingMs] = useState(0);
     const [value, setIputValue] = useState('');
     const [error, setError] = useState(false);
-    const [stop, playSound] = useAudio('beeper');
+    const [stop, playSound] = useAudio('alerting');
 
     const previouslyVisibleRef = useRef(false);
     useEffect(() => {
@@ -198,9 +200,11 @@ export const BatteryDialog = ({ visible, handleCloseDialog }) => {
     const isFinished = remainingMs <= 0;
 
     const closeDialog = () => {
+        stop();
         setCooldownEndTimestamp(null);
         setRemainingMs(0);
         setIputValue('');
+        setError(false);
         handleCloseDialog();
     }
 
@@ -280,8 +284,20 @@ export const MessageDialog = ({ visible, handleCloseDialog }) => {
 
 export const HelpDialog = ({ visible, handleCloseDialog }) => {
     const navigate = useNavigate();
+    const [stop, playSound] = useAudio('help');
+
+    const closeDialog = () => {
+        stop();
+        handleCloseDialog();
+    };
     const confirm = () => {
+        stop();
         navigate('/tasks/7');
+        handleCloseDialog();
+    }
+    const ignore = () => {
+        stop();
+        navigate('/map');
         handleCloseDialog();
     }
     const header = (
@@ -292,15 +308,19 @@ export const HelpDialog = ({ visible, handleCloseDialog }) => {
     const footerContent = (
         <div className="flex gap-2" style={{ marginTop: '0.5rem' }}>
             <Button label="Допомогти" severity="info" onClick={confirm} />
-            <Button label="Ігнорувати" severity="secondary" onClick={confirm} />
+            <Button label="Ігнорувати" severity="secondary" onClick={ignore} />
         </div>
     )
+
+    useEffect(() => {
+        visible && playSound();
+    }, [visible, playSound])
 
     return (
         <Dialog
             modal
             visible={visible}
-            onHide={handleCloseDialog}
+            onHide={closeDialog}
             header={header}
             footer={footerContent}
             style={{ width: '40vw' }}
@@ -309,7 +329,8 @@ export const HelpDialog = ({ visible, handleCloseDialog }) => {
                 <span style={{ fontSize: '2rem', color: 'red', fontWeight: 'bold' }}>Ви отримали сигнал про допомогу!</span>
                 <p>Схоже, поруч сталась аварія на іншому кораблі і хтось у небезпеці. Ви можете допомогти цьому кораблеві або продовжити свій політ.</p>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                    Попадання метеоритів у корабель біля планети Сигма
+                    Попадання метеоритів у корабель біля планети Сигма<br/>
+                    <Button icon='pi pi-volume-off' rounded  outlined raised severity="danger" aria-label="Cancel" onClick={() => stop()}/>
                 </div>
             </div>
         </Dialog>
@@ -318,7 +339,7 @@ export const HelpDialog = ({ visible, handleCloseDialog }) => {
 
 export const AllertDialog = ({ visible, handleCloseDialog }) => {
     const navigate = useNavigate();
-    const [stop, playSound] = useAudio('beeper');
+    const [stop, playSound] = useAudio('airAllert');
 
     const confirm = () => {
         stop();
@@ -340,11 +361,16 @@ export const AllertDialog = ({ visible, handleCloseDialog }) => {
         visible && playSound();
     }, [visible, playSound])
 
+    const closeDialog = () => {
+        stop();
+        handleCloseDialog();
+    }
+
     return (
         <Dialog
             modal
             visible={visible}
-            onHide={handleCloseDialog}
+            onHide={closeDialog}
             header={header}
             footer={footerContent}
             style={{ width: '40vw' }}
@@ -517,7 +543,7 @@ export const FinalQuestDialog = ({ visible, handleCloseDialog }) => {
     const [value, setIputValue] = useState('');
     const [error, setError] = useState(false);
     const [success, setSucces] = useState(false);
-    const [stop, playSound] = useAudio('celebration', 0.1);
+    const [stop, playSound] = useAudio('celebration', 0.8);
 
     const closeDialog = () => {
         setIputValue('');
@@ -558,7 +584,7 @@ export const FinalQuestDialog = ({ visible, handleCloseDialog }) => {
     return (
         <Dialog header="Ви змогли дістати дані галактичного значення!" visible={visible}
             style={{ width: '40vw' }}
-            onHide={handleCloseDialog}
+            onHide={handleFinishGame}
         >
             <p>Вони захищенні надзвичайно складним шифром. Його може розгадати лише одна людина - міністр космічної гільдії. Знайдіть його, щоб завершити квест.</p>
             <div style={{ marginTop: '0.5rem' }}>
